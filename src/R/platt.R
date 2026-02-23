@@ -158,7 +158,10 @@ platt_generate_regression_internal <- function(
       )
 
       residual_sum_of_squares <- model$m$deviance()
-
+      if (is.na(residual_sum_of_squares)) {
+        stop("residual_sum_of_squares is NA")
+      }
+      
       abc <- stats::coef(model)
       alpha <- abc[["alpha"]]
       beta <- abc[["beta"]]
